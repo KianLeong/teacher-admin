@@ -1,4 +1,6 @@
 const express = require('express');
+require('dotenv').config();
+const { PORT } = process.env
 const routes = [require('./route/register')
     ,require('./route/commonstudents')
     ,require('./route/suspend')
@@ -24,7 +26,7 @@ app.use((err, req, res, _) => {
     });
 })
 
-var server = app.listen(8080, function () {
+var server = app.listen(PORT, function () {
     var port = server.address().port
 
     console.log("App listening at %s", port)
