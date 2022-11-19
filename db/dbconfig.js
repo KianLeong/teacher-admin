@@ -1,11 +1,12 @@
 require('dotenv').config();
 const Sequelize = require('sequelize');
-const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DIALECT, DB_DATABASE } = process.env
+const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DIALECT, DB_DATABASE, DB_PORT } = process.env
 const db = {}
 const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
     logging: false, //if wish to output log, set to true
     host: DB_HOST,
     dialect: DB_DIALECT,
+    port: DB_PORT,
     pool: {
         max: 5,
         min: 0,
