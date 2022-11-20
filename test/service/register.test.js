@@ -15,6 +15,18 @@ jest.mock('../../model/student',()=>()=> {
     })
 })
 
+jest.mock('../../db/dbconfig', () => {
+    const SequelizeMock = require('sequelize-mock');
+    const originalModule = jest.requireActual('../../db/dbconfig');
+
+    //Mock the default export and named export 'foo'
+    return {
+        __esModule: true,
+        ...originalModule,
+        sequelize: new SequelizeMock()
+    };
+});
+
 jest.mock('../../model/teacher',()=>()=> {
     const SequelizeMock = require('sequelize-mock');
 
