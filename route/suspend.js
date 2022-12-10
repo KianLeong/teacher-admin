@@ -11,7 +11,7 @@ const suspendValidation = Joi.object().keys({
         .required()
 })
 
-suspendRouter.post('/suspend', utils.validateBody(suspendValidation),asyncWrap(async function (req, res) {
+suspendRouter.post('/suspend', utils.validateBody(suspendValidation),asyncWrap(async (req, res) => {
     const {student} = req.body;
     await suspendService.suspend(student);
     res.status(204).send();

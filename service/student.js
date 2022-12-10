@@ -5,6 +5,23 @@ async function getCommonStudents(teacherEmailList) {
         teacherEmailList = [teacherEmailList];
     }
 
+    /*
+
+    **Example of raw query (use replacements to be sql injection safe**
+    let queryString = 'select * from student where'+
+        ' exists (select studentId from registry where registry.studentId=student.id and' +
+        ' exists (select id from teacher where registry.teacherId=teacher.id and email in (:teacherEmails)) group by studentId having count(*)>0)';
+    const students = await db.sequelize.query(queryString,{
+        replacements:{teacherEmails:teacherEmailList},
+        type: db.Sequelize.QueryTypes.SELECT
+    })
+
+
+    return students.map(function(value) {
+
+        return value.email;
+    }); */
+
     const teachers = await db.Teacher.findAll({
             where: {
                 email: teacherEmailList

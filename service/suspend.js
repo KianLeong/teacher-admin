@@ -11,7 +11,7 @@ async function suspend(studentEmail) {
             throw new Error(studentEmail + " not found");
         }
         db.Student.update(
-            {suspend: 1},
+            {suspended: 1},
             {
                 where: {
                     email: studentEmail
